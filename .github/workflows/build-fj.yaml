@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - uses: dtolnay/rust-toolchain@stable
-      - run: cargo install fj --locked --root ./dist
+      - run: cargo install forgejo-cli --root ./dist
       - uses: actions/upload-artifact@v4
         with:
           name: fj-arm64-linux
