@@ -1,3 +1,5 @@
+name: Build Forgejo CLI for ARM64
+
 on:
   workflow_dispatch:
 
