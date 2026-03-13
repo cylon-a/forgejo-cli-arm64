@@ -20,3 +20,8 @@ jobs:
         with:
           files: dist/bin/fj
           tag_name: ${{ steps.tag.outputs.release_tag }}
+      - name: Upload Release
+        run: |
+          gh release upload $(./dist/bin/fj version) "./dist/bin/fj"
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
