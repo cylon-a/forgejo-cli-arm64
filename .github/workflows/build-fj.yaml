@@ -13,3 +13,8 @@ jobs:
         with:
           name: fj-arm64-linux
           path: dist/bin/fj
+          overwrite: true
+      - name: Upload
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/bin/fj
