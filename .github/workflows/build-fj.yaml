@@ -11,6 +11,8 @@ jobs:
       - run: cargo install forgejo-cli --root ./dist
       - name: release
         run: |
-          gh release upload $(./dist/bin/fj version) "./dist/bin/fj"
+          VERSION="$(./dist/bin/fj version)"
+          gh release create $VERSIon --notes "forgejo cli $VERSION"
+          gh release upload $VERSION "./dist/bin/fj"
         env:
           GITHUB_TOKEN: ${{ github.token }}
