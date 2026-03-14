@@ -7,12 +7,13 @@ jobs:
   build:
     runs-on: ubuntu-24.04-arm
     steps:
+      - uses: actions/checkout@v6
       - uses: dtolnay/rust-toolchain@stable
       - run: cargo install forgejo-cli --root ./dist
       - name: release
         run: |
-          VERSION="$(./dist/bin/fj version)"
-          gh release create $VERSION --notes "forgejo cli $VERSION"
-          gh release upload $VERSION "./dist/bin/fj"
+          VERSION="$(./dist/bin/fj version | sed 's/^fj //')"
+          gh release create "$VERSION" --notes "forgejo cli $VERSION"
+          gh release upload "$VERSION" "./dist/bin/fj"
         env:
           GITHUB_TOKEN: ${{ github.token }}
