@@ -9,18 +9,7 @@ jobs:
     steps:
       - uses: dtolnay/rust-toolchain@stable
       - run: cargo install forgejo-cli --root ./dist
-      - name: Generate release tag
-        id: tag
-        run: |
-          echo "::set-output name=release_tag::$(./dist/bin/fj version)"
       - name: release
-        uses: softprops/action-gh-release@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          files: dist/bin/fj
-          tag_name: ${{ steps.tag.outputs.release_tag }}
-      - name: Upload Release
         run: |
           gh release upload $(./dist/bin/fj version) "./dist/bin/fj"
         env:
