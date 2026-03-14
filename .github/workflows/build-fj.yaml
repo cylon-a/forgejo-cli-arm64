@@ -12,7 +12,7 @@ jobs:
       - name: release
         run: |
           VERSION="$(./dist/bin/fj version)"
-          gh release create $VERSIon --notes "forgejo cli $VERSION"
+          gh release create $VERSION --notes "forgejo cli $VERSION"
           gh release upload $VERSION "./dist/bin/fj"
         env:
           GITHUB_TOKEN: ${{ github.token }}
